@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
-FreeText = models.get_model('freetext', 'freetext')
+FreeText = models.get_model('free_text', 'freetext')
 CACHE_PREFIX = "freetext_"
 
 def do_get_freetext(parser, token):
