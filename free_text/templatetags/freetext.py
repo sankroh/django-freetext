@@ -1,6 +1,7 @@
 from django import template
 from django.db import models
 from django.core.cache import cache
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -38,6 +39,6 @@ class FreeTextNode(template.Node):
             content = c.content
         except FreeText.DoesNotExist:
             content = ''
-        return content
+        return mark_safe(content)
         
 register.tag('freetext', do_get_freetext)

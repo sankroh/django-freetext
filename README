@@ -2,4 +2,8 @@ I love django-chunks but the name confused people.
 
 This is a fork of the popular django-chunks project with the addition of a field "active" which is a BooleanField for controlling the display of the content on the site.
 
+Added slug and header fields. Replaced key with title. All template tags should use the slug.
+Added translation strings to model.
+
 TODO: make a better README
+TODO: implement header usage in template tag.
