@@ -5,7 +5,6 @@ setup(
     version = '0.1.0',
     description = 'django-freetext allows you to associate a piece of html code '
                   'with some unique key, and then use this key to insert date into a page.',
-    long_description = open('README').read(),
     keywords = 'django apps',
     license = 'New BSD License',
     author = 'Kevin Fricovsky',
