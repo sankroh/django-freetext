@@ -1,17 +1,44 @@
-from setuptools import setup, find_packages
-
+import os
+ 
+from distutils.core import setup
+ 
+def fullsplit(path, result=None):
+    """
+    Split a pathname into components (the opposite of os.path.join) in a
+    platform-neutral way.
+    """
+    if result is None:
+        result = []
+    head, tail = os.path.split(path)
+    if head == "":
+        return [tail] + result
+    if head == path:
+        return result
+    return fullsplit(head, [tail] + result)
+ 
+package_dir = "free_text"
+ 
+packages = []
+for dirpath, dirnames, filenames in os.walk(package_dir):
+    # ignore dirnames that start with '.'
+    for i, dirname in enumerate(dirnames):
+        if dirname.startswith("."):
+            del dirnames[i]
+    if "__init__.py" in filenames:
+        packages.append(".".join(fullsplit(dirpath)))
+ 
 setup(
     name = 'django-freetext',
     version = '0.1.0',
     description = 'django-freetext allows you to associate a piece of html code '
-                  'with some unique key, and then use this key to insert date into a page.',
+                  'with a unique slug, and then use this slug to insert date into a page.',
     keywords = 'django apps',
     license = 'New BSD License',
     author = 'Kevin Fricovsky',
     author_email = 'kevin@howiworkdaily.com',
-    maintainer = 'Alexander Artemenko',
-    maintainer_email = 'svetlyak.40wt@gmail.com',
-    url = 'http://github.com/svetlyak40wt/django-freetext/',
+    maintainer = 'Rohit Sankaran',
+    maintainer_email = 'rohit@lincolnloop.com',
+    url = 'http://github.com/roadhead/django-freetext/',
     dependency_links = [],
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -22,7 +49,6 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages = find_packages(),
+    packages = packages,
     include_package_data = True,
 )
-
